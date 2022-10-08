@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\Note\NoteInterface as NoteRepository;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class NoteController extends Controller
 {
+    /**
+     * The Note repository instance.
+     *
+     * @var App\Interfaces\Note\NoteRepository
+     */
+    protected $noteRepository;
+
+    /**
+     * Instantiate a new CategoryController instance.
+     */
+    public function __construct(NoteRepository $noteRepository)
+    {
+        $this->noteRepository = $noteRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +31,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::whereBelongsTo(Auth::user())->latest('updated_at')->paginate(5);
-
-        return view('notes.index')->with('notes', $notes);
+        return view('notes.index')->with('notes', $this->noteRepository->notes());
     }
 
     /**
@@ -43,13 +56,11 @@ class NoteController extends Controller
             'text' => 'required',
         ]);
 
-        Auth::user()->notes()->create([
-            'uuid' => Str::uuid(),
-            'title' => $request->title,
-            'text' => $request->text,
-        ]);
-
-        return to_route('notes.index');
+        if ($this->noteRepository->store($request->all())) {
+            return to_route('notes.index');
+        } else {
+            return back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
@@ -102,12 +113,11 @@ class NoteController extends Controller
             'text' => 'required',
         ]);
 
-        $note->update([
-            'title' => $request->title,
-            'text' => $request->text,
-        ]);
-
-        return to_route('notes.show', $note)->with('success', 'Note updated successfully');
+        if ($this->noteRepository->update($request->all(), $note)) {
+            return to_route('notes.show', $note)->with('success', 'Note updated successfully');
+        } else {
+            return back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
@@ -123,8 +133,10 @@ class NoteController extends Controller
             return abort(403);
         }
 
-        $note->delete();
-
-        return to_route('notes.index')->with('success', 'Note moved to trash');
+        if ($this->noteRepository->delete($note)) {
+            return to_route('notes.index')->with('success', 'Note moved to trash');
+        } else {
+            return back()->with('error', 'Something went wrong');
+        }
     }
 }
