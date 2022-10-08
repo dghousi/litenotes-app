@@ -1,4 +1,8 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Litenote Application
+
+### This is build with laravel framework
+
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,60 +11,119 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+### Installation Information
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1.  Fork this repository to your own account.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2.  Clone the Forked repository:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+        git clone https://github.com/your_github_username/litenote-app.git
 
-## Learning Laravel
+3.  After cloning, now run `cd litenote-app` and get into your newly cloned local
+    repository/folder.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4.  Then add upstream remote using
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+        git remote add upstream https://github.com/git@github.com:dghousi/litenote-app.git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5.  Get remotes using below commands
 
-## Laravel Sponsors
+        git remote -v
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+6.  To install `Composer` globally, download the installer from
+    https://getcomposer.org/download/ Verify that Composer in successfully
+    installed, and version of installed Composer will appear:
 
-### Premium Partners
+        composer --version        
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+7.  Install `Composer` dependencies.
 
-## Contributing
+        composer install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+8.  Copy `.env.example` file and create duplicate. Use `cp` command for Linux or
+    Max user.
 
-## Code of Conduct
+        cp .env.example .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+9.  Create a table in MySQL database and fill the database details `DB_DATABASE`
+    in `.env` file.
 
-## Security Vulnerabilities
+10. The below command will create tables into database using Laravel migration
+    and seeder.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        php artisan migrate:fresh --seed
 
-## License
+11. Generate your application encryption key:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+        php artisan key:generate
+
+12. Start the localhost server:
+
+        php artisan serve
+
+13. Run npm install to install all npm packages
+        npm install
+
+14. Serve the client side using this command:
+        npm run dev
+
+
+> You can now visit the app in your browser by visiting
+> [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+## Conventions that must be applied.
+
+1. Routes must be all lowercase.
+2. Combined routes SHOULD seperate with (-) dash.
+3. Controller name SHOULD be singular with 'Controller' suffix e.g
+   litenoteController.
+4. Controller name SHOULD start with uppercase letter.
+
+5. You SHOULD use snake_case as file name of your Blade templates. e.g
+   show_filtered.blade.php
+
+6. DB tables should be in lower case, with underscores to separate words
+   (snake_case), and should be in plural form. e.g users, project_tasks
+
+7. Pivot tables should be all lower case, each model in alphabetical order,
+   separated by an underscore (snake_case). e.g post_user, task_user
+8. Table column names should be in lower case, and snake_case (underscores
+   between words). You shouldn't reference the table name. e.g post_body, id,
+   created_at
+9. Primary Key this should normally be id.
+10. Foreign keys should be the model name (singular), with '\_id' appended to it
+    (assuming the PK in the other table is 'id'). e.g user_id, comment_id
+11. Normal variables should typically be in camelCase, with the first character
+    lower case. $users = ..., $bannedUsers = ....
+12. A model should be in singular, no spacing between words, and capitalised.
+    e.g User
+
+13. Model properties should be lower case, snake_case. They should also follow
+    the same conventions as the table column names. e.g
+    $this->updated_at,
+    $this->title
+
+14. Methods in your models in Laravel projects, like all methods in your Laravel
+    projects, should be camelCase but the first character lower case. e.g public
+    function get(), public function getAll().
+
+15. Method name controller should follow the same rules as model methods. I.e.
+    camelCase (first character lowercase). e.g index()
+
+## Good Practices
+
+1. Before doing fetching any records from upstream or pushing, always check if
+   you are in the right branch. You can see what branch you are in by running
+   the following command: `git branch`
+
+2. Before doing any new work, always run `git fetch upstream` and then
+   `git merge upstream/master` on the master branch. If you are not in the
+   master branch, simply run `get checkout master` first to make sure you are in
+   the master branch.
+
+3. Keep every commit and its message meaningful and relevant.
+
+4. Keep your PR titles meaningful and relevant.
+
+5. Always include `ifix-` before your branch names. That’s our common pattern.
+   `i` there is issue and fix is the fix you are providing.
