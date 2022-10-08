@@ -1,15 +1,8 @@
-# Litenote Application
+# Litenotes Application
 
 ### This is build with laravel framework
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
 ### Installation Information
 
@@ -17,14 +10,14 @@
 
 2.  Clone the Forked repository:
 
-        git clone https://github.com/your_github_username/litenote-app.git
+        git clone https://github.com/your_github_username/litenotes-app.git
 
-3.  After cloning, now run `cd litenote-app` and get into your newly cloned local
+3.  After cloning, now run `cd litenotes-app` and get into your newly cloned local
     repository/folder.
 
 4.  Then add upstream remote using
 
-        git remote add upstream https://github.com/git@github.com:dghousi/litenote-app.git
+        git remote add upstream https://github.com/git@github.com:dghousi/litenotes-app.git
 
 5.  Get remotes using below commands
 
@@ -76,7 +69,7 @@
 1. Routes must be all lowercase.
 2. Combined routes SHOULD seperate with (-) dash.
 3. Controller name SHOULD be singular with 'Controller' suffix e.g
-   litenoteController.
+   litenotesController.
 4. Controller name SHOULD start with uppercase letter.
 
 5. You SHOULD use snake_case as file name of your Blade templates. e.g
