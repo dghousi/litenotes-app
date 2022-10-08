@@ -54,11 +54,14 @@
 
         php artisan serve
 
-13. Run npm install to install all npm packages
+13. Run npm install to install all npm packages:
+
         npm install
 
 14. Serve the client side using this command:
+
         npm run dev
+        
 
 
 > You can now visit the app in your browser by visiting
